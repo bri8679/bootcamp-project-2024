@@ -13,7 +13,7 @@ var blogs = [
         description: "Hell week for K2 practice",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJFQt4BNZEytRYSEMNh6YgtxxWuthbbzr-UA&s",
         imageAlt: "wowwww girl cant even get a picture",
-        slug: "k2-hellweek",
+        slug: "k2hellweek",
     },
 ];
 var blogContainer = document.getElementById("blog-container");

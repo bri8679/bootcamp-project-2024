@@ -8,5 +8,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "This is how we will be tracking your milestones throughout bootcamp! By the end of bootcamp, you will have a fullstack personal portfolio website.",
+  "dependencies": {
+    "typescript": "^5.6.3"
+  }
 }
