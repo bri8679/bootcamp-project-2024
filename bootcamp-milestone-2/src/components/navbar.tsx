@@ -11,10 +11,9 @@ export default function Navbar() {
         </h1>
         <div className={style.navList}>
           <Link href="/">Home</Link>
-          <Link href="/blogs">Blogs</Link>
           <Link href="/portfolio">Portfolio</Link>
           <Link href="/resume">Resume</Link>
-          <Link href="/about">Contact Me</Link>
+          <Link href="/contact">Contact Me</Link>
         </div>
       </nav>
     </header>

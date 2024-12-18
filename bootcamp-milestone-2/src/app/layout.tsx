@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"; // You can change the font to anything
 import "./globals.css";
 import localFont from "next/font/local";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 // If you are experiencing an error "localFont is undefined", you might need to add the following blocks of code
 const inter = Inter({ subsets: ["latin"] });
@@ -34,6 +35,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
+        <Footer />
         {children}
       </body>
     </html>

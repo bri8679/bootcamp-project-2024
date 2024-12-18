@@ -1,0 +1,39 @@
+.previewContainer {
+  max-height: none;
+  overflow: visible;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* Image styling */
+.blogImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  border-radius: 5px;
+}
+
+.description {
+  font-family: sans-serif;
+  font-size: 16px;
+  color: black;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+.title {
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 8px;
+}
+
+.date {
+  font-size: 14px;
+  font-style: italic;
+  color: gray;
+  margin-top: 4px;
+}
