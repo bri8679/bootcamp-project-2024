@@ -33,10 +33,17 @@ export default function RootLayout({
   // returns boilerplate
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        <Footer />
-        {children}
+      <body className={`${inter.className}`}>
+        <div className="flex flex-col min-h-screen">
+          {/* Navbar */}
+          <Navbar />
+          
+          {/* Main content */}
+          <main className="flex-grow">{children}</main>
+
+          {/* Footer */}
+          <Footer />
+        </div>
       </body>
     </html>
   );

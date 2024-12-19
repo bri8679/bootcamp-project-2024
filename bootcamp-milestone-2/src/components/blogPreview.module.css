@@ -37,3 +37,11 @@
   color: gray;
   margin-top: 4px;
 }
+
+.link {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+  margin-top: 10px;
+}

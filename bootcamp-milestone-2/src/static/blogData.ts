@@ -14,7 +14,7 @@ const blogs: Blog[] = [
     description: "Hell week for united movement dance practice",
     image: "/images/um.png",
     imageAlt: "wowwww girl cant even get a picture",
-    slug: "hellweek",
+    slug: "umblog",
   },
   {
     title: "K2 hellweek",
@@ -22,7 +22,7 @@ const blogs: Blog[] = [
     description: "Hell week for K2 practice",
     image: "/images/k2.jpg",
     imageAlt: "wowwww girl cant even get a picture",
-    slug: "k2hellweek",
+    slug: "k2blog",
   },
 ];
 
