@@ -1,8 +1,25 @@
 import Image from "next/image";
-import blogs from "@/static/blogData";
 import BlogPreview from "@/components/blogPreview";
+import connectDB from "@/database/db";
+import Blog from "@/database/blogSchema";
 
-export default function Home() {
+async function getBlogs() {
+  await connectDB(); // function from db.ts before
+
+  try {
+    // query for all blogs and sort by date
+    const blogs = await Blog.find().sort({ date: -1 }).orFail();
+    // send a response as the blogs as the message
+    return blogs;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+}
+
+export default async function Home() {
+  // Fetch the blogs before rendering the page
+  const blogs = await getBlogs();
   return (
     <div>
       <h1 className="page-title text-3xl text-center pt-8">About Me</h1>
@@ -30,17 +47,25 @@ export default function Home() {
       <h1 className="text-4xl font-extrabold text-center py-4 shadow-lg">
         Latest Blogs
       </h1>
-      {blogs.map((blog) => (
-        <BlogPreview
-          key={blog.slug}
-          title={blog.title}
-          date={blog.date}
-          description={blog.description}
-          image={blog.image}
-          imageAlt={blog.imageAlt}
-          slug={blog.slug}
-        />
-      ))}
+      {blogs ? (
+        blogs.map((blog) => {
+          const formattedDate = new Date(blog.date).toLocaleDateString(); // Format the date
+
+          return (
+            <BlogPreview
+              key={blog.slug}
+              title={blog.title}
+              date={formattedDate} // Use the formatted date
+              description={blog.description}
+              image={blog.image}
+              imageAlt={blog.imageAlt}
+              slug={blog.slug}
+            />
+          );
+        })
+      ) : (
+        <p className="text-center">No blogs available.</p> // Display message if no blogs found
+      )}
     </div>
   );
 }
