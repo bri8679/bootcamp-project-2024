@@ -7,7 +7,7 @@ type Props = {
 async function getBlog(slug: string) {
   try {
     // This fetches the blog from an api endpoint that would GET the blog
-    const res = await fetch(`http://localhost:3000/api/blog/${slug}`, {
+    const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
       cache: "no-store",
     });
     // This checks that the GET request was successful
@@ -25,7 +25,8 @@ async function getBlog(slug: string) {
   }
 }
 
-export default async function BlogPage({ params: { slug } }: Props) {
+export default async function BlogPage({ params }: Props) {
+  const { slug } = await params;
   const blog = await getBlog(slug);
 
   if (!blog) {
@@ -33,18 +34,23 @@ export default async function BlogPage({ params: { slug } }: Props) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-4">{blog.title}</h1>
-      <p className="text-gray-500 text-sm mb-4">
-        Published on {new Date(blog.date).toLocaleDateString()}
-      </p>
-      <p className="text-lg mb-4">{blog.description}</p>
-      <Image
-        src={blog.image}
-        alt={blog.imageAlt}
-        className="w-full h-auto mb-6 rounded-lg"
-      />
-      <div className="text-lg leading-7">{blog.content}</div>
+    <div className="flex justify-center items-center min-h-screen p-4">
+      <div className="max-w-4xl w-full">
+        <h1 className="text-4xl font-bold mb-4 text-center">{blog.title}</h1>
+        <p className="text-gray-500 text-sm mb-4 text-center">
+          Published on {new Date(blog.date).toLocaleDateString()}
+        </p>
+        <div className="flex justify-center mb-6">
+          <Image
+            src={blog.image}
+            alt={blog.imageAlt}
+            height={300}
+            width={300}
+            className="rounded-lg bg-white shadow-md"
+          />
+        </div>
+        <div className="text-lg leading-7 text-center">{blog.content}</div>
+      </div>
     </div>
   );
 }
