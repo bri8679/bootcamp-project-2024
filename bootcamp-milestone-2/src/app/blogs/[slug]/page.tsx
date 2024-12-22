@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Comment from "@/components/Comment";
+import { IComment } from "@/database/blogSchema";
 
 type Props = {
   params: { slug: string };
@@ -50,6 +52,16 @@ export default async function BlogPage({ params }: Props) {
           />
         </div>
         <div className="text-lg leading-7 text-center">{blog.content}</div>
+        <div>
+          <h2 className="text-2xl font-bold mb-4">Comments</h2>
+          {blog.comments && blog.comments.length > 0 ? (
+            blog.comments.map((comment: IComment, index: number) => (
+              <Comment key={index} comment={comment} />
+            ))
+          ) : (
+            <p className="text-gray-500">No comments yet.</p>
+          )}
+        </div>
       </div>
     </div>
   );
