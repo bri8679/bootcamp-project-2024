@@ -3,10 +3,13 @@ import connectDB from "@/database/db";
 import Blog from "@/database/blogSchema";
 
 // GET request to fetch a blog by its slug
-export async function GET(req: NextRequest, { params }: { params: { slug: string } }) {
-  await connectDB(); // Connect to MongoDB
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { slug: string } }
+) {
+  const { slug } = params; // Access slug from params
 
-  const { slug } = params;
+  await connectDB(); // Connect to MongoDB
 
   try {
     const blog = await Blog.findOne({ slug }).orFail(); // Find blog by slug
@@ -18,11 +21,14 @@ export async function GET(req: NextRequest, { params }: { params: { slug: string
 }
 
 // POST request to add a comment to a blog
-export async function POST(req: NextRequest, { params }: { params: { slug: string } }) {
+export async function POST(
+  req: NextRequest,
+  { params }: { params: { slug: string } }
+) {
+  const { slug } = params; // Access slug from params
+
   try {
     await connectDB(); // Connect to MongoDB
-
-    const slug = params.slug;
 
     // Parse the request body to get the comment data
     const body = await req.json();
