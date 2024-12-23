@@ -8,7 +8,6 @@ type Params = Promise<{ slug: string }>;
 async function getBlog(slug: string): Promise<Blog | null> {
   try {
     // This fetches the blog from an api endpoint that would GET the blog
-    console.log(slug);
     const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
       cache: "no-store",
     });
