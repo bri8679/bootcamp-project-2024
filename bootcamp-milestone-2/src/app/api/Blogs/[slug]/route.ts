@@ -2,14 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/database/db";
 import Blog from "@/database/blogSchema";
 
-type IParams = {
-  params: {
-    slug: string;
-  };
-};
-
 // GET request to fetch a blog by its slug
-export async function GET(req: NextRequest, { params }: IParams) {
+export async function GET(req: NextRequest, { params }: { params: { slug: string } }) {
   await connectDB(); // Connect to MongoDB
 
   const { slug } = params;
@@ -24,10 +18,7 @@ export async function GET(req: NextRequest, { params }: IParams) {
 }
 
 // POST request to add a comment to a blog
-export async function POST(
-  req: NextRequest,
-  { params }: { params: { slug: string } }
-) {
+export async function POST(req: NextRequest, { params }: { params: { slug: string } }) {
   try {
     await connectDB(); // Connect to MongoDB
 
