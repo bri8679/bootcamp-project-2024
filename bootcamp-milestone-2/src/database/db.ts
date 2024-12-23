@@ -1,7 +1,7 @@
 // db.ts
 import mongoose from "mongoose";
 
-const url: string = process.env.MONGO_URI as string;
+const url: string = process.env.NEXT_PUBLIC_API_URL as string;
 let connection: typeof mongoose;
 
 /**
