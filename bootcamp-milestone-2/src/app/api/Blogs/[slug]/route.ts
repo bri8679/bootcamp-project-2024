@@ -29,7 +29,6 @@ export async function POST(
   { params }: { params: { slug: string } }
 ) {
   try {
-    console.log("hi");
     await connectDB(); // Connect to MongoDB
 
     const slug = params.slug;

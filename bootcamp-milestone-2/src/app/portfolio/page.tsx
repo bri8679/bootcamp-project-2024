@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import connectDB from "@/database/db";
 import Project from "@/database/portfolioSchema";
+import { IComment } from "@/database/portfolioSchema";
 
 async function getProjects() {
   await connectDB();
@@ -27,6 +28,7 @@ export default async function Home() {
       </p>
     );
   }
+
   return (
     <div className="project text-center">
       <h1 className="text-3xl pt-8 font-serif">Portfolio</h1>
@@ -44,6 +46,26 @@ export default async function Home() {
               {project.title}
             </h2>
             <p className="text-gray-600 mt-2">{project.description}</p>
+
+            {/* Comments Section */}
+            <div className="mt-6">
+              <h3 className="text-lg font-semibold">Comments</h3>
+              <div className="mt-4">
+                {project.comments && project.comments.length > 0 ? (
+                  project.comments.map((comment: IComment, index: number) => (
+                    <div key={index} className="border-t pt-2">
+                      <p className="text-sm font-semibold">{comment.user}</p>
+                      <p className="text-sm text-gray-600">{comment.comment}</p>
+                      <p className="text-xs text-gray-500">
+                        {new Date(comment.time).toLocaleString()}
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500">No comments yet.</p>
+                )}
+              </div>
+            </div>
           </div>
         ))}
       </div>
