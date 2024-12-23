@@ -10,6 +10,7 @@ export async function GET(
   await connectDB(); // function from db.ts before
   const slug = (await params).slug;
 
+  console.log("Received slug:", slug);
   try {
     const blog = await Blog.findOne({ slug }).orFail();
     return NextResponse.json(blog);
