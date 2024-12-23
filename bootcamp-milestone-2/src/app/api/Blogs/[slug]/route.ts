@@ -3,11 +3,8 @@ import connectDB from "@/database/db";
 import Blog from "@/database/blogSchema";
 
 // GET request to fetch a blog by its slug
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { slug: string } }
-) {
-  const { slug } = params; // Access slug from params
+export async function GET(req: NextRequest, context: { params: { slug: string } }) {
+  const { slug } = context.params; // Access slug from context.params
 
   await connectDB(); // Connect to MongoDB
 
@@ -21,11 +18,8 @@ export async function GET(
 }
 
 // POST request to add a comment to a blog
-export async function POST(
-  req: NextRequest,
-  { params }: { params: { slug: string } }
-) {
-  const { slug } = params; // Access slug from params
+export async function POST(req: NextRequest, context: { params: { slug: string } }) {
+  const { slug } = context.params; // Access slug from context.params
 
   try {
     await connectDB(); // Connect to MongoDB
