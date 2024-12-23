@@ -26,7 +26,7 @@ export default function BlogPreview({
         <Image src={image} alt={imageAlt} width={200} height={300} />
         <p className={styles.description}>{description}</p>
         <p className={styles.date}>Posted on: {date}</p>
-        <Link href={`/blogs/${slug}`} className={styles.link}>
+        <Link href={`/Blogs/${slug}`} className={styles.link}>
           Read More
         </Link>
       </div>
