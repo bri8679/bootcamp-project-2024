@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Comment from "@/components/Comment";
 import { IComment } from "@/database/blogSchema";
+import { Blog } from "@/database/blogSchema";
 
-type Props = {
-  params: { slug: string };
-};
+type Params = Promise<{ slug: string }>;
 
-async function getBlog(slug: string) {
+async function getBlog(slug: string): Promise<Blog | null> {
   try {
     // This fetches the blog from an api endpoint that would GET the blog
     const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
@@ -27,8 +26,8 @@ async function getBlog(slug: string) {
   }
 }
 
-export default async function BlogPage({ params }: Props) {
-  const { slug } = await params;
+export default async function BlogPage(props: { params: Params }) {
+  const { slug } = await props.params;
   const blog = await getBlog(slug);
 
   if (!blog) {

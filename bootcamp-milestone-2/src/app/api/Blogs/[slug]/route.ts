@@ -2,36 +2,30 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/database/db";
 import Blog from "@/database/blogSchema";
 
-type IParams = {
-  params: {
-    slug: string;
-  };
-};
-
 // GET request to fetch a blog by its slug
-export async function GET(req: NextRequest, { params }: IParams) {
-
-  const { slug } = await params;
-  await connectDB(); // Connect to MongoDB
+export async function GET(
+  req: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  await connectDB(); // function from db.ts before
+  const slug = (await params).slug;
 
   try {
-    const blog = await Blog.findOne({ slug }).orFail(); // Find blog by slug
-    return NextResponse.json(blog); // Return blog data
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json("Blog not found.", { status: 404 }); // Blog not found
+    const blog = await Blog.findOne({ slug }).orFail();
+    return NextResponse.json(blog);
+  } catch {
+    return NextResponse.json("Blog not found.", { status: 404 });
   }
 }
 
 // POST request to add a comment to a blog
 export async function POST(
   req: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    await connectDB(); // Connect to MongoDB
-
-    const slug = params.slug;
+    await connectDB();
+    const slug = (await params).slug;
 
     // Parse the request body to get the comment data
     const body = await req.json();
