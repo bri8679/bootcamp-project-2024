@@ -7,8 +7,9 @@ type Params = Promise<{ slug: string }>;
 
 async function getBlog(slug: string): Promise<Blog | null> {
   try {
+    const baseUrl = process.env.NEXT_PUBLIC_HOST;
     // This fetches the blog from an api endpoint that would GET the blog
-    const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
+    const res = await fetch(`${baseUrl}/api/Blogs/${slug}`, {
       cache: "no-store",
     });
     // This checks that the GET request was successful
