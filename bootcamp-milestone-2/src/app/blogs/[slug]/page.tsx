@@ -1,29 +1,21 @@
 import Image from "next/image";
-import Comment from "@/components/Comment";
 import { IComment } from "@/database/blogSchema";
 import { Blog } from "@/database/blogSchema";
+import CommentForm from "@/components/CommentForm";
 
 type Params = Promise<{ slug: string }>;
 
 async function getBlog(slug: string): Promise<Blog | null> {
+  const baseUrl = process.env.NEXT_PUBLIC_HOST;
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_HOST;
-    // This fetches the blog from an api endpoint that would GET the blog
-    const res = await fetch(`${baseUrl}/api/Blogs/${slug}`, {
-      cache: "no-store",
-    });
-    // This checks that the GET request was successful
+    const res = await fetch(`${baseUrl}/api/Blogs/${slug}`, { cache: "no-store" });
     if (!res.ok) {
       throw new Error("Failed to fetch blog");
     }
-
-    return res.json(); // Return the blog data as JSON
+    return res.json();
   } catch (err: unknown) {
     console.log(`error: ${err}`);
     return null;
-    // `` are a special way of allowing JS inside a string
-    // Instead of "error: " + err, we can just do the above
-    // it is simular to formated strings in python --> f"{err}"
   }
 }
 
@@ -56,12 +48,18 @@ export default async function BlogPage(props: { params: Params }) {
           <h2 className="text-2xl font-bold mb-4">Comments</h2>
           {blog.comments && blog.comments.length > 0 ? (
             blog.comments.map((comment: IComment, index: number) => (
-              <Comment key={index} comment={comment} />
+              <div key={index} className="border-t pt-4">
+                <p><strong>{comment.user}</strong>: {comment.comment}</p>
+                <p className="text-gray-500 text-sm">{new Date(comment.time).toLocaleString()}</p>
+              </div>
             ))
           ) : (
             <p className="text-gray-500">No comments yet.</p>
           )}
         </div>
+
+        {/* Use the dynamically imported CommentForm component */}
+        <CommentForm slug={slug} />
       </div>
     </div>
   );
