@@ -57,8 +57,6 @@ export default async function BlogPage(props: { params: Params }) {
             <p className="text-gray-500">No comments yet.</p>
           )}
         </div>
-
-        {/* Use the dynamically imported CommentForm component */}
         <CommentForm slug={slug} />
       </div>
     </div>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import connectDB from "@/database/db";
 import Project from "@/database/portfolioSchema";
 import { IComment } from "@/database/portfolioSchema";
+import CommentSection from "@/components/PortComment";
 
 async function getProjects() {
   await connectDB();
@@ -65,6 +66,7 @@ export default async function Home() {
                   <p className="text-gray-500">No comments yet.</p>
                 )}
               </div>
+              <CommentSection />
             </div>
           </div>
         ))}
