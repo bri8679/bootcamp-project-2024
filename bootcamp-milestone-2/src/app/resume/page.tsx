@@ -9,7 +9,7 @@ export default function Home() {
 
       {/* Resume Download Link */}
       <Link
-        href="Briana Kirkman Resume.pdf"
+        href="Briana Kirkman Resume .pdf"
         download
         className="text-blue-600 underline hover:text-blue-800"
       >
