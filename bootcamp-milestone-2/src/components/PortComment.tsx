@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 
@@ -16,7 +16,7 @@ export default function PortComment() {
     };
 
     try {
-      const res = await fetch('/api/portfolio', {
+      const res = await fetch("/api/portfolio", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,7 +58,10 @@ export default function PortComment() {
           required
           className="p-2 w-full border rounded-md"
         />
-        <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md">
+        <button
+          type="submit"
+          className="px-4 py-2 bg-blue-500 text-white rounded-md"
+        >
           Submit Comment
         </button>
       </form>

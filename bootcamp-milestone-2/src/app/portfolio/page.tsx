@@ -19,6 +19,7 @@ async function getProjects() {
   }
 }
 
+export const revalidate = 0; // Forces fresh fetch on every request
 export default async function Home() {
   const projects = await getProjects();
 
